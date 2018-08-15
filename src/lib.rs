@@ -182,3 +182,14 @@ mod redox {
         }
     }
 }
+
+#[cfg(any(target_arch = "asmjs", target_arch = "wasm32"))]
+use wasm::isatty;
+#[cfg(any(target_arch = "asmjs", target_arch = "wasm32"))]
+mod wasm {
+    use stream::Stream;
+
+    pub fn isatty(stream: Stream) -> bool {
+        false
+    }
+}
